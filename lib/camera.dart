@@ -501,6 +501,12 @@ class CameraController extends ValueNotifier<CameraValue> {
 
   /// Stop streaming.
   Future<void> stopVideoStreaming() async {
+    value = value.copyWith(isStreamingVideoRtmp: false, isRecordingVideo: false);
+    print("Stop video streaming call");
+    await _channel.invokeMethod<void>(
+      'stopRecordingOrStreaming',
+      <String, dynamic>{'textureId': _textureId},
+    );
 //     if (!value.isInitialized || _isDisposed!) {
 //       throw CameraException(
 //         'Uninitialized CameraController',
