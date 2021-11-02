@@ -501,31 +501,31 @@ class CameraController extends ValueNotifier<CameraValue> {
 
   /// Stop streaming.
   Future<void> stopVideoStreaming() async {
-    if (!value.isInitialized || _isDisposed!) {
-      throw CameraException(
-        'Uninitialized CameraController',
-        'stopVideoStreaming was called on uninitialized CameraController',
-      );
-    }
-    if (!value.isStreamingVideoRtmp) {
-      throw CameraException(
-        'No video is recording',
-        'stopVideoStreaming was called when no video is streaming.',
-      );
-    }
-    try {
-      value = value.copyWith(isStreamingVideoRtmp: false, isRecordingVideo: false);
-      print("Stop video streaming call");
-      await _channel.invokeMethod<void>(
-        'stopRecordingOrStreaming',
-        <String, dynamic>{'textureId': _textureId},
-      );
-    } on PlatformException catch (e) {
-      print("Got exception " + e.toString());
-      throw CameraException(e.code, e.message!);
-    } on Exception catch(e) {
-      print("Random New exception " + e.toString());
-    }
+//     if (!value.isInitialized || _isDisposed!) {
+//       throw CameraException(
+//         'Uninitialized CameraController',
+//         'stopVideoStreaming was called on uninitialized CameraController',
+//       );
+//     }
+//     if (!value.isStreamingVideoRtmp) {
+//       throw CameraException(
+//         'No video is recording',
+//         'stopVideoStreaming was called when no video is streaming.',
+//       );
+//     }
+//     try {
+//       value = value.copyWith(isStreamingVideoRtmp: false, isRecordingVideo: false);
+//       print("Stop video streaming call");
+//       await _channel.invokeMethod<void>(
+//         'stopRecordingOrStreaming',
+//         <String, dynamic>{'textureId': _textureId},
+//       );
+//     } on PlatformException catch (e) {
+//       print("Got exception " + e.toString());
+//       throw CameraException(e.code, e.message!);
+//     } on Exception catch(e) {
+//       print("Random New exception 1 " + e.toString());
+//     }
   }
 
   /// Stop streaming.
@@ -552,6 +552,8 @@ class CameraController extends ValueNotifier<CameraValue> {
       }
     } on PlatformException catch (e) {
       throw CameraException(e.code, e.message!);
+    } on Exception catch(e) {
+      print("Random New exception 2 " + e.toString());
     }
   }
 
@@ -579,6 +581,8 @@ class CameraController extends ValueNotifier<CameraValue> {
       );
     } on PlatformException catch (e) {
       throw CameraException(e.code, e.message!);
+    } on Exception catch(e) {
+      print("Random New exception 3 " + e.toString());
     }
   }
 
@@ -606,6 +610,8 @@ class CameraController extends ValueNotifier<CameraValue> {
       );
     } on PlatformException catch (e) {
       throw CameraException(e.code, e.message!);
+    }  on Exception catch(e) {
+      print("Random New exception 4 " + e.toString());
     }
   }
 
