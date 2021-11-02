@@ -521,8 +521,10 @@ class CameraController extends ValueNotifier<CameraValue> {
         <String, dynamic>{'textureId': _textureId},
       );
     } on PlatformException catch (e) {
-      print("GOt exception " + e.toString());
+      print("Got exception " + e.toString());
       throw CameraException(e.code, e.message!);
+    } on Exception catch(e) {
+      print("Random New exception " + e.toString());
     }
   }
 
